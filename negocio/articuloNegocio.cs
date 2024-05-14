@@ -67,6 +67,40 @@ namespace negocio
 
         }
 
+        public List<Articulo> ListarConSP()
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, A.ImagenUrl, A.Precio FROM ARTICULOS A, CATEGORIAS C, MARCAS M WHERE C.Id = A.IdCategoria AND M.Id = A.IdMarca";
+
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.id = (int)datos.Lector["Id"];
+                    aux.codigo = (string)datos.Lector["Codigo"];
+                    aux.nombre = (string)datos.Lector["Nombre"];
+                    aux.descripcion = (string)datos.Lector["Descripcion"];
+                    //aux.descripcion = (string)datos.Lector["IdCategoria"];  
+                    //aux.stock = (int)datos.Lector["Stock"];
+                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+                        aux.imagenurl = (string)datos.Lector["ImagenUrl"];
+                    aux.precio = (decimal)datos.Lector["Precio"];
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void agregar(Articulo nuevo)
         {
             AccesoDatos datos = new AccesoDatos();  
