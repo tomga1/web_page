@@ -66,7 +66,7 @@ namespace aplicacionWEB
 				nuevo.precio = int.Parse(txtPrecio.Text);
 				nuevo.imagenurl = txtUrl.Text;
 
-				negocio.agregar(nuevo);
+				negocio.agregarConSP(nuevo);
 				Response.Redirect("ArticulosLista.aspx", false);
 					
 			}

@@ -101,15 +101,22 @@ namespace negocio
             }
         }
 
-        public void agregar(Articulo nuevo)
+        public void agregarConSP(Articulo nuevo)
         {
-            AccesoDatos datos = new AccesoDatos();  
+            AccesoDatos datos = new AccesoDatos();
 
             try
             {
                 //datos.setearConsulta("insert into articulos(Codigo,Descripcion,Proveedor,Stock) values(" + nuevo.codigo + ",'" + nuevo.descripcion + ",'" + nuevo.proveedor + ",'" + nuevo.stock)";
-                datos.setearConsulta($"insert into ARTICULOS(Codigo,Nombre,Descripcion,IdMarca, IdCategoria, Precio, ImagenUrl) values('{nuevo.codigo}', '{nuevo.nombre}', '{nuevo.descripcion}', '{nuevo.idmarca}', '{nuevo.idcategoria}',{nuevo.precio}, '{nuevo.imagenurl}')");
-                datos.ejecutarAccion();      
+                datos.setearProcedimiento("storedAltaArticulo");
+                datos.setearParametro("@codigo", nuevo.codigo);
+                datos.setearParametro("@nombre", nuevo.nombre);
+                datos.setearParametro("@descripcion", nuevo.descripcion);
+                datos.setearParametro("@idmarca", nuevo.marca.id);
+                datos.setearParametro("@idcategoria", nuevo.categoria.id);
+                datos.setearParametro("@imagenUrl", nuevo.imagenurl);
+                datos.setearParametro("@precio", nuevo.precio);
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
