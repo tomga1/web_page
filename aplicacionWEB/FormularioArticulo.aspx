@@ -14,36 +14,40 @@
             </div>
 
             <div class="mb-3">
+                <label for="txtNombre" class="form-label">Codigo: </label>
+                <asp:TextBox runat="server" ID="txtCodigo" CssClass="form-control" />
+            </div>
+            <div class="mb-3">
                 <label for="txtNombre" class="form-label">Nombre: </label>
                 <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
             </div>
 
-            <div class="mb-3">
-                <label for="txtNombre" class="form-label">Codigo: </label>
-                <asp:TextBox runat="server" ID="txtCodigo" CssClass="form-control" />
-            </div>
 
             <div class="mb-3">
                 <label for="txtNombre" class="form-label">Descripcion: </label>
                 <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control" />
             </div>
 
-            <asp:DropDownList CssClass="btn btn-secondary btn-sm dropdown-toggle" ID="ddMarca" runat="server"> </asp:DropDownList>
+            <asp:DropDownList class="form-select" aria-label="Default select example" ID="ddMarca" runat="server"></asp:DropDownList>
 
-            <asp:DropDownList CssClass="btn btn-secondary btn-sm dropdown-toggle" ID="ddCategoria" runat="server"> </asp:DropDownList>
-
-
-            <div> <br />  </div>
+            <asp:DropDownList class="form-select" aria-label="Default select example" ID="ddCategoria" runat="server"></asp:DropDownList>
 
             <div class="mb-3">
-                <asp:Button Text="Aceptar" ID="BtnAceptar" CssClass="btn btn-primary" OnClick="" />
-                <a href="ArticulosLista.aspx">Cancelar</a>
+                <label for="txtPrecio" class="form-label">Precio: </label>
+                <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" />
             </div>
 
-            
+            <div class="mb-3">
+                <label for="txtUrl" class="form-label">UrlImagen: </label>
+                <asp:TextBox runat="server" ID="txtUrl" CssClass="form-control" />
+            </div>
 
+            <div>
+                <br />
+            </div>
 
-
-            
+            <div class="mb-3">
+                <asp:Button Text="Aceptar" ID="BtnAceptar" CssClass="btn btn-primary" OnClick="BtnAceptar_Click" runat="server" />
+            </div>
 </asp:Content>
 

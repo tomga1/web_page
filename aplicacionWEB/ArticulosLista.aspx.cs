@@ -12,9 +12,12 @@ namespace aplicacionWEB
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             articuloNegocio negocio = new articuloNegocio();
             dgvArticulos.DataSource = negocio.ListarConSP();
             dgvArticulos.DataBind();
+
+            
         }
 
 
