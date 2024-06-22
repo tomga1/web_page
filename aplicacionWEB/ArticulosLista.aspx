@@ -28,5 +28,5 @@
 
 
     </asp:GridView>
-    <a href="FormularioArticulio.aspx" class="btn btn-primary">Agregar</a>
+    <a href="FormularioArticulo.aspx" class="btn btn-primary">Agregar</a>
 </asp:Content>

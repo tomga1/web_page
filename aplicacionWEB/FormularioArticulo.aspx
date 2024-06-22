@@ -19,27 +19,31 @@
             </div>
 
             <div class="mb-3">
+                <label for="txtNombre" class="form-label">Codigo: </label>
+                <asp:TextBox runat="server" ID="txtCodigo" CssClass="form-control" />
+            </div>
+
+            <div class="mb-3">
                 <label for="txtNombre" class="form-label">Descripcion: </label>
-                <asp:TextBox runat="server" ID="TextBox1" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control" />
             </div>
 
-            <div class="mb-3">
-                <label for="txtNombre" class="form-label">Tipo: </label>
-                <asp:TextBox runat="server" ID="TextBox2" CssClass="form-control" />
-            </div>
+            <asp:DropDownList CssClass="btn btn-secondary btn-sm dropdown-toggle" ID="ddMarca" runat="server"> </asp:DropDownList>
+
+            <asp:DropDownList CssClass="btn btn-secondary btn-sm dropdown-toggle" ID="ddCategoria" runat="server"> </asp:DropDownList>
+
+
+            <div> <br />  </div>
 
             <div class="mb-3">
-                <asp:Button text="Aceptar" ID="BtnAceptar" CssClass="btn btn-primary" OnClick="" />
+                <asp:Button Text="Aceptar" ID="BtnAceptar" CssClass="btn btn-primary" OnClick="" />
                 <a href="ArticulosLista.aspx">Cancelar</a>
             </div>
 
-
-            <asp:DropDownList CssClass="btn btn-secondary btn-sm dropdown-toggle" ID="" runat="server">
-                <asp:ListItem Text="Hola" />
-                <asp:ListItem Text="Chau" />
-            </asp:DropDownList>
+            
 
 
+
+            
 </asp:Content>
 
- 
