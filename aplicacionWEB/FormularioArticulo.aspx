@@ -49,5 +49,6 @@
             <div class="mb-3">
                 <asp:Button Text="Aceptar" ID="BtnAceptar" CssClass="btn btn-primary" OnClick="BtnAceptar_Click" runat="server" />
             </div>
+
 </asp:Content>
 

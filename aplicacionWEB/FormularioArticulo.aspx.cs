@@ -13,17 +13,16 @@ namespace aplicacionWEB
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+			txtId.Enabled = false;
 			try
 			{
-				txtId.Enabled = false;
+				//configuracion inicial, aqui se carga la pantalla con los combobox
 				if (!IsPostBack)
 				{
 					articuloNegocio negocio = new articuloNegocio();
 					List<Marca> listaMarcas = negocio.ListarMarca();
 					List<Categoria> listaCategorias = negocio.ListarCategorias();
 
-
-				
 
 					ddMarca.DataSource = listaMarcas;
 					ddMarca.DataValueField = "id";
@@ -34,9 +33,29 @@ namespace aplicacionWEB
                     ddCategoria.DataValueField = "id";
                     ddCategoria.DataTextField = "categoria";
                     ddCategoria.DataBind();
-
-
                 }
+				//configuracion si estamos MODIFICANDO articulo
+				string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
+
+
+                if (id != "")
+				{
+					articuloNegocio negocio = new articuloNegocio();
+					Articulo seleccionado = (negocio.listar(id))[0];
+
+					//pre cargar todos los campos de un id existente
+					txtId.Text = id;
+					txtCodigo.Text = seleccionado.codigo;
+					txtNombre.Text = seleccionado.nombre;
+					txtDescripcion.Text = seleccionado.descripcion;
+
+					ddMarca.SelectedValue = seleccionado.marca.id.ToString();
+					ddCategoria.SelectedValue = seleccionado.categoria.id.ToString();
+
+					txtPrecio.Text = seleccionado.precio.ToString();
+					txtUrl.Text = seleccionado.imagenurl;
+					 
+				}
 			}
 			catch (Exception ex)
 			{
