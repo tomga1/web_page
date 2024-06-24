@@ -163,13 +163,14 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, Precio = @precio, ImagenUrl = @imagenurl where Id = @id");
-                datos.setearConsulta("storedModificarArticulo");
+                datos.setearProcedimiento("storedModificarArticulo");
                 datos.setearParametro("@codigo", nuevo.codigo);
                 datos.setearParametro("@nombre", nuevo.nombre);
                 datos.setearParametro("@descripcion", nuevo.descripcion);
-                datos.setearParametro("@precio", nuevo.precio);
+                datos.setearParametro("@idmarca", nuevo.idmarca);
+                datos.setearParametro("@idcategoria", nuevo.idcategoria);
                 datos.setearParametro("@imagenurl", nuevo.imagenurl);
+                datos.setearParametro("@precio", nuevo.precio);
                 datos.setearParametro("@id", nuevo.id);
 
                 datos.ejecutarAccion();

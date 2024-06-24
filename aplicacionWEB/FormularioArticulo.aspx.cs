@@ -38,7 +38,7 @@ namespace aplicacionWEB
 				string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
 
 
-                if (id != "")
+                if (id != "" && !IsPostBack)
 				{
 					articuloNegocio negocio = new articuloNegocio();
 					Articulo seleccionado = (negocio.listar(id))[0];
@@ -95,6 +95,7 @@ namespace aplicacionWEB
 				//Agregar o modificar,  dependiendo si existe el articulo o no 
 				if (Request.QueryString["id"] != null)
 				{
+					nuevo.id = int.Parse(txtId.Text);	
 					negocio.modificarConSP(nuevo);
 				}
 				else
