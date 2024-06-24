@@ -107,7 +107,6 @@ namespace negocio
 
             try
             {
-                //datos.setearConsulta("insert into articulos(Codigo,Descripcion,Proveedor,Stock) values(" + nuevo.codigo + ",'" + nuevo.descripcion + ",'" + nuevo.proveedor + ",'" + nuevo.stock)";
                 datos.setearProcedimiento("storedAltaArticulo");
                 datos.setearParametro("@codigo", nuevo.codigo);
                 datos.setearParametro("@nombre", nuevo.nombre);

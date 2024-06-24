@@ -63,7 +63,14 @@ namespace aplicacionWEB
 				nuevo.categoria = new Categoria();
 				nuevo.categoria.id = int.Parse(ddCategoria.SelectedValue);
 
-				nuevo.precio = int.Parse(txtPrecio.Text);
+				if (decimal.TryParse(txtPrecio.Text, out decimal precio))
+				{
+					nuevo.precio = precio;
+				}
+				else
+				{
+					throw new Exception("El precio ingresado no es valido.");
+				}
 				nuevo.imagenurl = txtUrl.Text;
 
 				negocio.agregarConSP(nuevo);
