@@ -92,7 +92,18 @@ namespace aplicacionWEB
 				}
 				nuevo.imagenurl = txtUrl.Text;
 
+				//Agregar o modificar,  dependiendo si existe el articulo o no 
+				if (Request.QueryString["id"] != null)
+				{
+					negocio.modificarConSP(nuevo);
+				}
+				else
+				{
+					negocio.agregarConSP(nuevo);	
+				}
 				negocio.agregarConSP(nuevo);
+
+
 				Response.Redirect("ArticulosLista.aspx", false);
 					
 			}

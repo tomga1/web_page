@@ -157,6 +157,36 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void modificarConSP(Articulo nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, Precio = @precio, ImagenUrl = @imagenurl where Id = @id");
+                datos.setearConsulta("storedModificarArticulo");
+                datos.setearParametro("@codigo", nuevo.codigo);
+                datos.setearParametro("@nombre", nuevo.nombre);
+                datos.setearParametro("@descripcion", nuevo.descripcion);
+                datos.setearParametro("@precio", nuevo.precio);
+                datos.setearParametro("@imagenurl", nuevo.imagenurl);
+                datos.setearParametro("@id", nuevo.id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+
         public void eliminar(int id)
         {
 
@@ -332,5 +362,7 @@ namespace negocio
             }
 
         }
+
+        
     }
 }
