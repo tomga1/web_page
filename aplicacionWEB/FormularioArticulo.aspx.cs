@@ -102,7 +102,6 @@ namespace aplicacionWEB
 				{
 					negocio.agregarConSP(nuevo);	
 				}
-				negocio.agregarConSP(nuevo);
 
 
 				Response.Redirect("ArticulosLista.aspx", false);

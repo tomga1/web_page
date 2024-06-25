@@ -89,6 +89,7 @@ namespace negocio
                     aux.codigo = (string)datos.Lector["Codigo"];
                     aux.nombre = (string)datos.Lector["Nombre"];
                     aux.descripcion = (string)datos.Lector["Descripcion"];
+                 
                     //aux.descripcion = (string)datos.Lector["IdCategoria"];  
                     //aux.stock = (int)datos.Lector["Stock"];
                     if (!(datos.Lector["ImagenUrl"] is DBNull))
@@ -167,8 +168,8 @@ namespace negocio
                 datos.setearParametro("@codigo", nuevo.codigo);
                 datos.setearParametro("@nombre", nuevo.nombre);
                 datos.setearParametro("@descripcion", nuevo.descripcion);
-                datos.setearParametro("@idmarca", nuevo.idmarca);
-                datos.setearParametro("@idcategoria", nuevo.idcategoria);
+                datos.setearParametro("@idmarca", nuevo.marca.id);
+                datos.setearParametro("@idcategoria", nuevo.categoria.id);
                 datos.setearParametro("@imagenurl", nuevo.imagenurl);
                 datos.setearParametro("@precio", nuevo.precio);
                 datos.setearParametro("@id", nuevo.id);
