@@ -11,9 +11,13 @@ namespace aplicacionWEB
 {
     public partial class FormularioArticulo : System.Web.UI.Page
     {
+
+        public bool ConfirmaEliminacion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
 			txtId.Enabled = false;
+			ConfirmaEliminacion = false;
+
 			try
 			{
 				//configuracion inicial, aqui se carga la pantalla con los combobox
@@ -112,6 +116,11 @@ namespace aplicacionWEB
                 Session.Add("error", ex);
                 throw;
 			}
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+			ConfirmaEliminacion = true;
         }
     }
 }
