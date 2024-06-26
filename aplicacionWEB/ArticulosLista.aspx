@@ -6,6 +6,15 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Lista de artículos</h1>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="mb-3">
+                <asp:Label Text="Filtrar" runat="server" />
+                <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control" AutoPostBack="true" OnTextChanged="filtro_TextChanged" />
+            </div>
+        </div>
+    </div>
     <asp:GridView ID="dgvArticulos" runat="server" DataKeyNames="Id"
         CssClass="table" AutoGenerateColumns="false"
         OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged"
@@ -17,8 +26,8 @@
             <asp:BoundField HeaderText="Nombre" DataField="nombre" />
             <asp:BoundField HeaderText="Descripción" DataField="descripcion" />
             <asp:BoundField HeaderText="Precio" DataField="precio" />
-            <asp:CheckBoxField  HeaderText="Activo" DataField="Activo"/>
-            <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="✍" /> 
+            <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
+            <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="✍" />
             <asp:TemplateField HeaderText="Marca">
                 <ItemTemplate>
                     <%# Eval("marca.marca") %>
