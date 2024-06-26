@@ -142,5 +142,23 @@ namespace aplicacionWEB
 				Session.Add("error", ex);
 			}
         }
+
+        protected void BtnInactivar_Click(object sender, EventArgs e)
+        {
+			try
+			{
+				articuloNegocio negocio = new articuloNegocio();
+				negocio.eliminarLogico(int.Parse(txtId.Text));
+                lblErrorMessage.Visible = false; // Oculta el mensaje de error si la operación es exitosa.
+                Response.Redirect("ArticulosLista.aspx"); 
+			}
+			catch (Exception ex)
+			{
+                lblErrorMessage.Text = "Ocurrió un error al inhabilitar el artículo: " + ex.Message;
+                lblErrorMessage.Visible = true; // Muestra el mensaje de error.
+
+                Session.Add("error", ex);
+			}
+        }
     }
 }

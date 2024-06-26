@@ -50,7 +50,10 @@
         </div>
 
         <div class="mb-3">
-            <asp:Button Text="Aceptar" ID="BtnAceptar" CssClass="btn btn-primary" OnClick="BtnAceptar_Click" runat="server" />
+            <asp:Button Text="Aceptar" ID="BtnAceptar" CssClass="btn btn-success" OnClick="BtnAceptar_Click" runat="server" />
+            <asp:Button Text="Inactivar" ID="BtnInactivar" CssClass="btn btn-secondary" OnClick="BtnInactivar_Click" runat="server" />
+            <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+
         </div>
 
         

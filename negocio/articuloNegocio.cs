@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using dominio;
 using System.Security.Cryptography.X509Certificates;
+using System.Diagnostics;
 
 namespace negocio
 {
@@ -96,7 +97,7 @@ namespace negocio
                     if (!(datos.Lector["ImagenUrl"] is DBNull))
                         aux.imagenurl = (string)datos.Lector["ImagenUrl"];
                     aux.precio = (decimal)datos.Lector["Precio"];
-                    aux.activo = (bool)datos.Lector["activo"];
+                    aux.activo = bool.Parse(datos.Lector["activo"].ToString());
 
                     lista.Add(aux);
                 }
@@ -122,7 +123,7 @@ namespace negocio
                 datos.setearParametro("@idcategoria", nuevo.categoria.id);
                 datos.setearParametro("@imagenUrl", nuevo.imagenurl);
                 datos.setearParametro("@precio", nuevo.precio);
-                datos.setearParametro("@activo", nuevo.activo);
+                datos.setearParametro("@activo", true);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -370,6 +371,20 @@ namespace negocio
 
         }
 
-        
+        public void eliminarLogico(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("storedInactivarArticulo");
+                datos.setearParametro("@Id", id);
+                datos.ejecutarAccion();
+                }
+            catch (Exception ex)
+            {
+
+                throw ex; 
+            }
+        }
     }
 }

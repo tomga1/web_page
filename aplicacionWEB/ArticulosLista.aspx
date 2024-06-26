@@ -17,6 +17,7 @@
             <asp:BoundField HeaderText="Nombre" DataField="nombre" />
             <asp:BoundField HeaderText="Descripción" DataField="descripcion" />
             <asp:BoundField HeaderText="Precio" DataField="precio" />
+            <asp:CheckBoxField  HeaderText="Activo" DataField="Activo"/>
             <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="✍" /> 
             <asp:TemplateField HeaderText="Marca">
                 <ItemTemplate>
