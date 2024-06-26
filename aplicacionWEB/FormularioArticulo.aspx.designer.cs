@@ -123,13 +123,13 @@ namespace aplicacionWEB
         protected global::System.Web.UI.WebControls.Button btnEliminar;
 
         /// <summary>
-        /// Control ConfirmarEliminacion.
+        /// Control chkConfirmaEliminacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ConfirmarEliminacion;
+        protected global::System.Web.UI.WebControls.CheckBox chkConfirmaEliminacion;
 
         /// <summary>
         /// Control btnConfirmarEliminar.

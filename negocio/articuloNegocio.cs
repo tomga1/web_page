@@ -23,7 +23,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, a.ImagenUrl, a.Precio, m.Descripcion AS Marcas, c.Descripcion AS Categorias FROM ARTICULOS a INNER JOIN MARCAS m ON a.IdMarca = m.Id INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id ";
+                comando.CommandText = "SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, a.ImagenUrl, a.Precio, a.activo, m.Descripcion AS Marcas, c.Descripcion AS Categorias FROM ARTICULOS a INNER JOIN MARCAS m ON a.IdMarca = m.Id INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id ";
                 if(id != "")
                 {
                     comando.CommandText += " and a.Id = " + id;
@@ -41,6 +41,7 @@ namespace negocio
                     aux.nombre = (string)lector["Nombre"];
                     aux.descripcion = (string)lector["Descripcion"];
                     aux.precio = (decimal)lector["Precio"];
+                    aux.activo = (bool)lector["activo"];
                     if (!(lector["ImagenUrl"] is DBNull))
                         aux.imagenurl = (string)lector["ImagenUrl"];
 
@@ -95,6 +96,7 @@ namespace negocio
                     if (!(datos.Lector["ImagenUrl"] is DBNull))
                         aux.imagenurl = (string)datos.Lector["ImagenUrl"];
                     aux.precio = (decimal)datos.Lector["Precio"];
+                    aux.activo = (bool)datos.Lector["activo"];
 
                     lista.Add(aux);
                 }
@@ -120,6 +122,7 @@ namespace negocio
                 datos.setearParametro("@idcategoria", nuevo.categoria.id);
                 datos.setearParametro("@imagenUrl", nuevo.imagenurl);
                 datos.setearParametro("@precio", nuevo.precio);
+                datos.setearParametro("@activo", nuevo.activo);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -138,12 +141,13 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, Precio = @precio, ImagenUrl = @imagenurl where Id = @id");
+                datos.setearConsulta("update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, Precio = @precio, ImagenUrl = @imagenurl, activo = @activo where Id = @id");
                 datos.setearParametro("@codigo", art.codigo);
                 datos.setearParametro("@nombre", art.nombre);
                 datos.setearParametro("@descripcion", art.descripcion);
                 datos.setearParametro("@precio", art.precio);
                 datos.setearParametro("@imagenurl", art.imagenurl);
+                datos.setearParametro("activo", art.activo);
                 datos.setearParametro("@id", art.id);
 
                 datos.ejecutarAccion();
@@ -172,6 +176,7 @@ namespace negocio
                 datos.setearParametro("@idcategoria", nuevo.categoria.id);
                 datos.setearParametro("@imagenurl", nuevo.imagenurl);
                 datos.setearParametro("@precio", nuevo.precio);
+                datos.setearParametro("@activo", nuevo.activo);
                 datos.setearParametro("@id", nuevo.id);
 
                 datos.ejecutarAccion();

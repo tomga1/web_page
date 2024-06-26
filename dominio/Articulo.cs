@@ -18,6 +18,7 @@ namespace dominio
         public int idcategoria { get; set; } 
         public string imagenurl { get; set; }
         public decimal precio { get; set; }
+        public bool activo { get; set; }
 
         public Marca marca { get; set; }
 

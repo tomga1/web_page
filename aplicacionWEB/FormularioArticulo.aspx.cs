@@ -58,6 +58,7 @@ namespace aplicacionWEB
 
 					txtPrecio.Text = seleccionado.precio.ToString();
 					txtUrl.Text = seleccionado.imagenurl;
+					
 					 
 				}
 			}
@@ -121,6 +122,25 @@ namespace aplicacionWEB
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
 			ConfirmaEliminacion = true;
+        }
+
+        protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
+        {
+			try
+			{
+				if (chkConfirmaEliminacion.Checked)
+				{
+					articuloNegocio negocio = new articuloNegocio();
+					negocio.eliminar(int.Parse(txtId.Text));
+					Response.Redirect("ArticulosLista.aspx");
+
+				}
+			}
+			catch (Exception ex)
+			{
+
+				Session.Add("error", ex);
+			}
         }
     }
 }
