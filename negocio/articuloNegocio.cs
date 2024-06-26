@@ -42,7 +42,7 @@ namespace negocio
                     aux.nombre = (string)lector["Nombre"];
                     aux.descripcion = (string)lector["Descripcion"];
                     aux.precio = (decimal)lector["Precio"];
-                    aux.activo = (bool)lector["activo"];
+                    aux.activo = bool.Parse(lector["activo"].ToString());
                     if (!(lector["ImagenUrl"] is DBNull))
                         aux.imagenurl = (string)lector["ImagenUrl"];
 
@@ -371,13 +371,14 @@ namespace negocio
 
         }
 
-        public void eliminarLogico(int id)
+        public void eliminarLogico(int id, bool activo = false)
         {
-            AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearProcedimiento("storedInactivarArticulo");
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("UPDATE ARTICULOS set activo = @activo WHERE Id = @Id");
                 datos.setearParametro("@Id", id);
+                datos.setearParametro("@activo", activo); 
                 datos.ejecutarAccion();
                 }
             catch (Exception ex)

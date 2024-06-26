@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.SessionState;
 
 namespace aplicacionWEB
 {
@@ -47,6 +48,10 @@ namespace aplicacionWEB
 					articuloNegocio negocio = new articuloNegocio();
 					Articulo seleccionado = (negocio.listar(id))[0];
 
+					//guardo articulo seleccionado en session
+					Session.Add("articuloSeleccionado", seleccionado);
+
+
 					//pre cargar todos los campos de un id existente
 					txtId.Text = id;
 					txtCodigo.Text = seleccionado.codigo;
@@ -58,7 +63,13 @@ namespace aplicacionWEB
 
 					txtPrecio.Text = seleccionado.precio.ToString();
 					txtUrl.Text = seleccionado.imagenurl;
-					
+
+					//Configurar acciones
+					if (!seleccionado.activo)
+					{
+						BtnInactivar.Text = "Activar"; 
+					}
+
 					 
 				}
 			}
@@ -148,7 +159,10 @@ namespace aplicacionWEB
 			try
 			{
 				articuloNegocio negocio = new articuloNegocio();
-				negocio.eliminarLogico(int.Parse(txtId.Text));
+				Articulo seleccionado = (Articulo)Session["articuloSeleccionado"];	
+
+
+				negocio.eliminarLogico(seleccionado.id, !seleccionado.activo);
                 lblErrorMessage.Visible = false; // Oculta el mensaje de error si la operación es exitosa.
                 Response.Redirect("ArticulosLista.aspx"); 
 			}
