@@ -53,7 +53,7 @@
             <asp:Button Text="Aceptar" ID="BtnAceptar" CssClass="btn btn-primary" OnClick="BtnAceptar_Click" runat="server" />
         </div>
 
-
+        
         <div class="row">
             <div class="col-6">
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
