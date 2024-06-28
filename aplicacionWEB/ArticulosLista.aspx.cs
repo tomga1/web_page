@@ -12,15 +12,17 @@ namespace aplicacionWEB
 {
     public partial class ArticulosLista : System.Web.UI.Page
     {
+        public bool FiltroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            articuloNegocio negocio = new articuloNegocio();
-            Session.Add("listaArticulos", negocio.ListarConSP());
-            dgvArticulos.DataSource = Session["listaArticulos"]; 
-            dgvArticulos.DataBind();
-
-            
+            if (!IsPostBack)
+            {
+                FiltroAvanzado = false;
+                articuloNegocio negocio = new articuloNegocio();
+                Session.Add("listaArticulos", negocio.ListarConSP());
+                dgvArticulos.DataSource = Session["listaArticulos"];
+                dgvArticulos.DataBind();
+            }
         }
 
 
@@ -32,7 +34,7 @@ namespace aplicacionWEB
 
         protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string id= dgvArticulos.SelectedDataKey.Value.ToString();
+            string id = dgvArticulos.SelectedDataKey.Value.ToString();
             Response.Redirect("FormularioArticulo.aspx?id=" + id);
         }
 
@@ -45,6 +47,23 @@ namespace aplicacionWEB
 
             dgvArticulos.DataSource = listaFiltrada;
             dgvArticulos.DataBind();
+        }
+
+        protected void chkAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+            //Activo e inactivo el campo de filtro avanzado 
+            FiltroAvanzado = chkAvanzado.Checked;
+            txtFiltro.Enabled = !FiltroAvanzado;
+        }
+
+        protected void ddlCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlCampo.SelectedItem.ToString() == "Número")
+            {
+                ddlCriterio.Items.Add("Igual a");
+                ddlCriterio.Items.Add("Igual a");
+                ddlCriterio.Items.Add("Igual a");
+            }
         }
     }
 
